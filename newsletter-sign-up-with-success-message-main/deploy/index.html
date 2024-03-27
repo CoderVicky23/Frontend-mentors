@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <div class="container" id="one">
+      <div class="child-image">
+        <!-- <img src="./assets/images/illustration-sign-up-mobile.svg" alt=""> -->
+        <picture>
+          <source srcset="./assets/images/illustration-sign-up-desktop.svg" media="(min-width: 800px)">
+          <source srcset="./assets/images/illustration-sign-up-mobile.svg">
+          <img class="image-tag" src="./assets/images/illustration-sign-up-mobile.svg" alt="">
+        </picture>
+      </div>
+      <div class="child-description">
+        <h1>Stay updated!</h1>
+        <h3>Join 60,000+ product managers receiving monthly updates on:</h3>
+        <ul>
+          <li><span class="list-icon"><img src="./assets/images/icon-list.svg" alt=""></span><span
+              class="list-content">Product discovery and building what matters</span></li>
+          <li><span class="list-icon"><img src="./assets/images/icon-list.svg" alt=""></span><span
+              class="list-content">Measuring to ensure updates are a success</span></li>
+          <li><span class="list-icon"><img src="./assets/images/icon-list.svg" alt=""></span><span
+              class="list-content">And much more!</span></li>
+        </ul>
+        <div class="input-fields">
+          <div class="email-field">
+            <h4 class="email-heading">Email address</h4>
+            <h4 class="email-invalid">Valid email required</h4>
+          </div>
+          <input type="email" id="email-area" name="t1" placeholder="email@company.com">
+          <input type="button" id="submit-btn" value="Subscribe to monthly newsletter">
+        </div>
+      </div>
+    </div>
+    <div class="success-container" id="two">
+      <div class="s1">
+        <div class="confirm-logo"><img src="./assets/images/icon-success.svg" alt=""></div>
+        <h1>Thanks for subscribing!</h1>
+        <h4 style="font-weight: 400; margin-bottom: 2rem;">A confirmation email has been sent to <span
+            id="email-use"></span>. Please open it and click the button inside to confirm your subscription.</h4>
+      </div>
+      <input type="button" id="dismiss-btn" value="Dismiss Message" style="margin-bottom: 0;">
+    </div>
+  </main>
+  <script async>
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    document.getElementById("submit-btn").addEventListener("click", () => {
+      let emailValue = document.getElementById("email-area").value;
+      if (!validRegex.test(emailValue)) {
+        document.getElementsByClassName("email-invalid")[0].style.display = "block";
+        document.getElementById("email-area").classList.add("invalid");
+      } else {
+        document.getElementById("one").style.display = "none";
+        document.getElementById("two").style.display = "block";
+      }
+    })
+    document.getElementById("email-area").addEventListener("focus", (event) => {
+      event.target.classList.remove("invalid");
+    })
+    document.getElementById("dismiss-btn").addEventListener("click", () => {
+      document.getElementById("two").style.display = "none";
+    })
+  </script>
+</body>
+
+</html>
